@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="min-w-full min-h-screen font-sans text-sm antialiased bg-gray-100 text-center"
-  >
+  <div class="fixed inset-0 flex flex-col">
     <router-view />
   </div>
 </template>

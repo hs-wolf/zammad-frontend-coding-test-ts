@@ -1,9 +1,11 @@
 <template>
-  <div class="justify-center max-w-md mt-10">
-    <h1 class="font-extrabold tracking-tigh text-3xl leading-10">
+  <main
+    class="flex-1 flex flex-col items-center py-10 px-5 overflow-auto text-center"
+  >
+    <h1 class="font-extrabold tracking-tigh text-3xl leading-10 max-w-md">
       Ready for the challenge?
     </h1>
-    <div class="mt-8">
+    <div class="mt-8 max-w-md">
       <section>
         <h2 class="font-bold text-2xl leading-6">Exercise 1</h2>
         <div class="mt-5">
@@ -103,7 +105,7 @@
         </div>
       </section>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
