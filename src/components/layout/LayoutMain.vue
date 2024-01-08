@@ -6,8 +6,8 @@
           class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex-shrink-0 flex items-center">
-            <img class="w-14 h-14" src="../../assets/logo.svg" />
-            <img class="ml-3" src="../../assets/logotype.svg" />
+            <img class="w-14 h-14" src="../../assets/icons/logo.svg" />
+            <img class="ml-3" src="../../assets/icons/logotype.svg" />
           </div>
           <div class="flex ml-10 items-center align-middle">
             <div class="flex space-x-4">
