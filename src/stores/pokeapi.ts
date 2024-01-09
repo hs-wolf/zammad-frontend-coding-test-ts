@@ -8,12 +8,14 @@ import {
   POKEAPI_STORE_ID,
   POKEMON_SPRITE_FRONT_DEFAULT_URL,
 } from '../utils'
-import type {
-  NamedAPIResource,
-  PokeapiResponse,
-  Pokemon,
-  PokemonLite,
+import {
+  SnackType,
+  type NamedAPIResource,
+  type PokeapiResponse,
+  type Pokemon,
+  type PokemonLite,
 } from '../types'
+import { useSnackbarStore } from './snackbar'
 
 interface IState {
   pokemonsLimit: number
@@ -83,8 +85,16 @@ export const usePokeapiStore = defineStore(POKEAPI_STORE_ID, {
         })
         // Push the new pokemons into the array and sort them based on Id.
         this.pokemonsList.push(...newPokemonsLite)
+        useSnackbarStore().createSnack({
+          type: SnackType.SUCCESS,
+          message: 'Pokemons loaded!',
+        })
       } catch (error) {
         console.log(error)
+        useSnackbarStore().createSnack({
+          type: SnackType.ERROR,
+          message: 'Failed to load the Pokemons.',
+        })
       } finally {
         this.searchingPokemonList = false
       }
@@ -99,9 +109,19 @@ export const usePokeapiStore = defineStore(POKEAPI_STORE_ID, {
         const response = await axios.get<Pokemon>(
           POKEAPI_POKEMON_UNIQUE_SEARCH(id),
         )
+        useSnackbarStore().createSnack({
+          type: SnackType.SUCCESS,
+          message: `Loaded details for Pokémon: ${CAPITALIZED_NAME(
+            response.data.name,
+          )}`,
+        })
         return response.data
       } catch (error) {
         console.log(error)
+        useSnackbarStore().createSnack({
+          type: SnackType.ERROR,
+          message: `Failed to load the Pokémon with id: ${id}.`,
+        })
         return null
       } finally {
         this.searchingUniquePokemon = false

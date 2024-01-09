@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col hover:bg-gray-800 hover:text-white transition-colors bg-gray-200 border border-gray-300 rounded-md"
+    class="flex flex-col hover:bg-gray-800 hover:text-white active:scale-95 transition-all bg-gray-200 border border-gray-300 rounded-md"
   >
     <div class="flex flex-col p-2 text-center">
       <p class="font-semibold">#{{ pokemonLite?.id }}</p>

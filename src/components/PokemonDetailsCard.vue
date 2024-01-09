@@ -57,15 +57,22 @@
 </template>
 
 <script setup lang="ts">
-import { Pokemon } from '../types'
+import { Pokemon, SnackType } from '../types'
 import { POKEMON_SPRITE_FRONT_ANIMATED_URL, CAPITALIZED_NAME } from '../utils'
+import { useSnackbarStore } from '../stores'
 
 defineProps<{ pokemon: Pokemon }>()
 
 defineEmits<{ (e: 'close'): void }>()
 
+const snackbarStore = useSnackbarStore()
+
 // Set the default sprit as fallback if the pokemons gif doesnt exist.
 const setFallbackImage = (e: Event, url: string) => {
+  snackbarStore.createSnack({
+    type: SnackType.ERROR,
+    message: 'This Pokémon doesn`t have an animated sprite.',
+  })
   const target = e?.target as HTMLImageElement
   if (target.src) {
     target.src = url
