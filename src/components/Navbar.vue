@@ -13,11 +13,8 @@
 </template>
 
 <script setup lang="ts">
-type NavbarTab = {
-  name: string
-  label: string
-  url: string
-}
+import { NavbarTab } from '../types'
+
 const tabs: NavbarTab[] = [
   {
     name: 'home',
