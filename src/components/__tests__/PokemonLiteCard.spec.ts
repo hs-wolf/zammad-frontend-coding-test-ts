@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { describe, test, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PokemonLiteCard from '../PokemonLiteCard.vue'

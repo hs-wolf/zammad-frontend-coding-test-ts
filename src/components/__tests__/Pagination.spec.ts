@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 import { describe, expect, test } from 'vitest'
 import { mount } from '@vue/test-utils'
