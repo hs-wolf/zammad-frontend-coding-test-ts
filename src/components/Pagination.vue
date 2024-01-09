@@ -30,9 +30,10 @@
         v-bind:value="queryText"
         type="text"
         name="search"
+        pattern="[a-zA-Z0-9]+"
         placeholder="Pokémon name or id"
         class="w-full py-2 px-3 ps-10 bg-transparent outline-none text-base"
-        v-on:change.prevent="
+        v-on:input.prevent="
           (e) => changeQueryText((e.target as HTMLInputElement).value)
         "
       />
@@ -125,7 +126,10 @@ const changePage = async (action?: 'previous' | 'next') => {
   }
 }
 
-const changeQueryText = (text: string) => emits('changeText', text)
+const changeQueryText = (text: string) => {
+  const filtered = text.match(/[a-zA-Z0-9]+/g)?.join('') ?? ''
+  emits('changeText', filtered)
+}
 </script>
 
 <style scoped>

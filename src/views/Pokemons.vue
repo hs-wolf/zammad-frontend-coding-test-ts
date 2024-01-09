@@ -15,7 +15,6 @@
       />
     </Transition>
     <Pagination
-      v-if="pokemonsToShow.length"
       v-bind:selected-limit="selectedLimit"
       v-bind:selected-page="selectedPage"
       v-bind:limits="limitsList"
@@ -58,7 +57,7 @@ import PokemonDetailsCard from '../components/PokemonDetailsCard.vue'
 import PokemonLiteCard from '../components/PokemonLiteCard.vue'
 
 const pokeapiStore = usePokeapiStore()
-const { pokemonsFilterText, pokemonsCount, filteredPokemons } =
+const { pokemonsFilterText, pokemonsCount, filteredPokemons, pokemonsList } =
   storeToRefs(pokeapiStore)
 
 const selectedLimit = ref(32)
@@ -69,7 +68,9 @@ const selectedPokemon = ref<Pokemon | null>()
 
 // Get the list of pages based on the total o pokemons available and the limit per page.
 const pagesList = computed(() => {
-  const totalOfPages = Math.ceil(pokemonsCount.value / selectedLimit.value)
+  const totalOfPages = Math.ceil(
+    filteredPokemons.value.length / selectedLimit.value,
+  )
   const newPagesList = []
   for (let i = 0; i < totalOfPages; i += 1) {
     newPagesList.push(i)
@@ -108,9 +109,13 @@ watch(pokemonsFilterText, () => {
 })
 
 // When the pokemons are loaded, select the first one.
-watch(filteredPokemons, () => {
-  selectPokemon(filteredPokemons.value[0])
-})
+watch(
+  () => pokemonsList.value,
+  () => {
+    selectPokemon(pokemonsList.value[0])
+  },
+  { deep: true },
+)
 </script>
 
 <style scoped>
