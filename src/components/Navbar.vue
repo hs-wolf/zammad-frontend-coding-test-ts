@@ -13,9 +13,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { NavbarTab } from '../types'
 
-const tabs: NavbarTab[] = [
+const tabs = ref<NavbarTab[]>([
   {
     name: 'home',
     label: 'Home',
@@ -26,7 +27,7 @@ const tabs: NavbarTab[] = [
     label: 'Pokémons',
     url: '/pokemons',
   },
-]
+])
 </script>
 
 <style scoped></style>

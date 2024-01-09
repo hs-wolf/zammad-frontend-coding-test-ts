@@ -42,7 +42,7 @@
       <p class="whitespace-nowrap">Results per page:</p>
       <select
         id="limit"
-        name="limit"
+        name="select-limit"
         class="bg-gray-200 border border-gray-300 rounded-md h-10 p-2"
         v-bind:value="selectedLimit"
         v-on:change="changeLimit"
@@ -54,7 +54,7 @@
     </div>
     <div class="grid grid-cols-3 gap-2">
       <button
-        name="Previous"
+        name="previous"
         type="button"
         class="pagination-button rounded-s-3xl rounded-e-md"
         v-on:click.prevent="changePage('previous')"
@@ -65,7 +65,7 @@
         <p class="whitespace-nowrap">Page:</p>
         <select
           id="page-bottom"
-          name="page-bottom"
+          name="select-page"
           class="bg-gray-200 border border-gray-300 rounded-md h-10 p-2"
           v-bind:value="selectedPage"
           v-on:change="
@@ -82,7 +82,7 @@
         </select>
       </div>
       <button
-        name="Previous"
+        name="next"
         type="button"
         class="pagination-button rounded-e-3xl rounded-s-md"
         v-on:click.prevent="changePage('next')"

@@ -4,17 +4,17 @@
     class="relative flex flex-col items-center md:flex-row gap-5 p-5 w-full max-w-5xl mx-auto bg-gradient-to-b from-gray-200 to-gray-100 rounded-md"
   >
     <img
-      v-bind:src="POKEMON_SPRITE_FRONT_ANIMATED_URL(pokemon?.id)"
+      v-bind:src="animatedUrl"
       v-bind:alt="pokemon?.name"
       width="256"
       height="256"
       v-on:error="
-        (e) => setFallbackImage(e, pokemon?.sprites.front_default ?? '')
+        (e) => setFallbackImage(e, pokemon.sprites.front_default ?? '')
       "
     />
     <div class="flex flex-col gap-1 text-base">
       <h1 class="text-3xl font-semibold">
-        #{{ pokemon.id }} - {{ CAPITALIZED_NAME(pokemon.name) }}
+        #{{ pokemon.id }} - {{ capitalizedName }}
       </h1>
       <p>
         <span class="font-semibold">Height:</span>
@@ -61,11 +61,14 @@ import { Pokemon, SnackType } from '../types'
 import { POKEMON_SPRITE_FRONT_ANIMATED_URL, CAPITALIZED_NAME } from '../utils'
 import { useSnackbarStore } from '../stores'
 
-defineProps<{ pokemon: Pokemon }>()
+const props = defineProps<{ pokemon: Pokemon }>()
 
 defineEmits<{ (e: 'close'): void }>()
 
 const snackbarStore = useSnackbarStore()
+
+const capitalizedName = CAPITALIZED_NAME(props.pokemon.name)
+const animatedUrl = POKEMON_SPRITE_FRONT_ANIMATED_URL(props.pokemon.id)
 
 // Set the default sprit as fallback if the pokemons gif doesnt exist.
 const setFallbackImage = (e: Event, url: string) => {
