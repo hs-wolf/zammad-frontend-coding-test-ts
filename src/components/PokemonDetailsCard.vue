@@ -57,6 +57,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import { Pokemon, SnackType } from '../types'
 import { POKEMON_SPRITE_FRONT_ANIMATED_URL, CAPITALIZED_NAME } from '../utils'
 import { useSnackbarStore } from '../stores'
@@ -67,8 +68,10 @@ defineEmits<{ (e: 'close'): void }>()
 
 const snackbarStore = useSnackbarStore()
 
-const capitalizedName = CAPITALIZED_NAME(props.pokemon.name)
-const animatedUrl = POKEMON_SPRITE_FRONT_ANIMATED_URL(props.pokemon.id)
+const capitalizedName = computed(() => CAPITALIZED_NAME(props.pokemon.name))
+const animatedUrl = computed(() =>
+  POKEMON_SPRITE_FRONT_ANIMATED_URL(props.pokemon.id),
+)
 
 // Set the default sprit as fallback if the pokemons gif doesnt exist.
 const setFallbackImage = (e: Event, url: string) => {
