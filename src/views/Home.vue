@@ -80,7 +80,7 @@
           <p>
             For example you can show a toast after something was fetched from
             the public API (which you implemented before) or also in error
-            situtations.
+            situations.
           </p>
         </div>
         <div class="mt-5">
